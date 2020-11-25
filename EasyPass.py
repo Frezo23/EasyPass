@@ -6,3 +6,10 @@ import os
 import datetime
 from tkinter import messagebox
 from cryptography.fernet import Fernet
+
+root = Tk()
+root.title('EasyPass')
+root.geometry('500x500')
+
+
+root.mainloop()

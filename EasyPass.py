@@ -56,8 +56,16 @@ def login():
         f.close()
         keyuse = Fernet(key)
 
+        email = loginent.get()
+        password = passent.get()
         email2 = keyuse.decrypt(email1)
         password2 = keyuse.decrypt(password1)
+        email2 = str(email2)
+        password2 = str(password2)
+        email2 = email2.replace("'",'')
+        email2 = email2.replace("b",'')
+        password2 = password2.replace("'",'')
+        password2 = password2.replace("b",'')
 
         if email2 == email and password2 == password:
             log = True
@@ -116,6 +124,7 @@ def cleanlog():
     passent.destroy()
     passlbl.destroy()
     forgotbtn.destroy()
+    saverad.destroy()
 
 root = Tk()
 root.title('EasyPass')

@@ -56,6 +56,8 @@ def login():
         f.close()
         keyuse = Fernet(key)
 
+        ### decrypting info
+
         email = loginent.get()
         password = passent.get()
         email2 = keyuse.decrypt(email1)
@@ -155,7 +157,7 @@ passlbl.place(x=50,y=190)
 loginent = tk.Entry(root,font=('Arial',12),width=30,bg="gray")
 loginent.place(x=170,y=155)
 
-passent = tk.Entry(root,font=('Arial',12),width=30,bg="gray")
+passent = tk.Entry(root,font=('Arial',12),width=30,bg="gray",show='*')
 passent.place(x=170,y=195)
 
 saverad = tk.Checkbutton(root,variable=save,text='Remember me',borderwidth=0,bg="#00fffb",font=('Arial',10),command=zapamietaj)

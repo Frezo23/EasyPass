@@ -32,6 +32,14 @@ nameadd = ''
 emailadd = ''
 hasloadd = ''
 num = 0
+a = 0
+
+nazwy = []
+loginy = []
+hasla = []
+nazwytxt = ''
+loginytxt = ''
+haslatxt = ''
 
 try:
     f = open("save.save")
@@ -61,6 +69,15 @@ def userscreen():
     haslalbl = tk.Label(root,text='Password',bg="#00fffb",font=('Arial',15))
     haslalbl.place(x=313,y=100)
 
+    def delwindow():
+        delwd = tk.Toplevel(root)
+        delwd.title('Delete')
+        delwd.geometry('250x150')
+        delwd.resizable(False,False)
+        delwd.iconphoto(False, tk.PhotoImage(file='logo.png'))
+        delw_bg = tk.Label(delwd,bg="#00fffb",width=50,height=80)
+        delw_bg.place(x=0,y=0)
+
 
     def addwindow():
         addwd = tk.Toplevel(root)
@@ -86,8 +103,9 @@ def userscreen():
         hasloaddent = tk.Entry(addwd,bg='gray',font=('Arial',10),show='*')
         hasloaddent.place(x=85,y=63)
 
+
         def addlist():
-            global nameadd, emailadd, hasloadd
+            global nameadd, emailadd, hasloadd, loginy, hasla, nazwy, a, key, nazwytxt, loginytxt, haslatxt
             nameadd = nameaddent.get()
             emailadd = loginaddent.get()
             hasloadd = hasloaddent.get()
@@ -102,12 +120,29 @@ def userscreen():
             num =+ 1
             haslalist.insert(num, hasloadd)
 
+            keyuse = Fernet(key)
+            
+            nazwy.append(nazwalist.get(a))
+            for i in range(len(nazwy) + 1):
+                nazwytxt = nazwy(a)
+                nazwytxt = nazwytxt.encode(keyuse)
+                with open('na.me','wb') as f:
+                    f_lines = '\n'.join(nazwytxt)
+                    f.write(f_lines)
+                a =+ 1
+                nazwytxt = ''
+
+
+                
 
         addbtn = tk.Button(addwd,text='Add to list',bg="gray",font=('Arial',12),command=addlist)
         addbtn.place(x=5,y=100)
 
     addbtn = tk.Button(root,text='Add...',font=('Arial',15),bg="gray",command=addwindow)
     addbtn.place(x=5,y=370)
+
+    deletebtn = tk.Button(root,text='Delete...',font=('Arial',15),bg="gray",command=delwindow)
+    deletebtn.place(x=90,y=370)
 
 
 def note():

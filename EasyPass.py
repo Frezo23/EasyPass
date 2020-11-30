@@ -45,6 +45,7 @@ except IOError:
 def addwindow():
     addwd = tk.Toplevel(root)
     addwd.title('Add')
+    addwd.geometry('250x150')
     addwd.resizable(False,False)
     addwd.iconphoto(False, tk.PhotoImage(file='logo.png'))
     addw_bg = tk.Label(addwd,bg="#00fffb",width=50,height=80)
@@ -58,11 +59,14 @@ def addwindow():
     hasloaddlbl.place(x=5,y=60)
 
     nameaddent = tk.Entry(addwd,bg='gray',font=('Arial',10))
-    nameaddent.place(x=40,y=5)
+    nameaddent.place(x=55,y=7)
     loginaddent = tk.Entry(addwd,bg='gray',font=('Arial',10))
-    loginaddent.place(x=40,y=5)
-    hasloaddent = tk.Entry(addwd,bg='gray',font=('Arial',10))
-    hasloaddent.place(x=40,y=5)
+    loginaddent.place(x=55,y=35)
+    hasloaddent = tk.Entry(addwd,bg='gray',font=('Arial',10),show='*')
+    hasloaddent.place(x=85,y=63)
+
+    addbtn = tk.Button(addwd,text='Add to list',bg="gray",font=('Arial',12))
+    addbtn.place(x=5,y=100)
 
 
 

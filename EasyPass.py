@@ -42,6 +42,50 @@ except IOError:
     key = f.read()
     f.close()
 
+def addwindow():
+    addwd = tk.Toplevel(root)
+    addwd.title('Add')
+    addwd.resizable(False,False)
+    addwd.iconphoto(False, tk.PhotoImage(file='logo.png'))
+    addw_bg = tk.Label(addwd,bg="#00fffb",width=50,height=80)
+    addw_bg.place(x=0,y=0)
+
+    nameaddlbl = tk.Label(addwd,text='Name:',bg="#00fffb",font=('Arial',12))
+    nameaddlbl.place(x=5,y=5)
+    loginaddlbl = tk.Label(addwd,text='Email:',bg="#00fffb",font=('Arial',12))
+    loginaddlbl.place(x=5,y=33)
+    hasloaddlbl = tk.Label(addwd,text='Password:',bg="#00fffb",font=('Arial',12))
+    hasloaddlbl.place(x=5,y=60)
+
+    nameaddent = tk.Entry(addwd,bg='gray',font=('Arial',10))
+    nameaddent.place(x=40,y=5)
+    loginaddent = tk.Entry(addwd,bg='gray',font=('Arial',10))
+    loginaddent.place(x=40,y=5)
+    hasloaddent = tk.Entry(addwd,bg='gray',font=('Arial',10))
+    hasloaddent.place(x=40,y=5)
+
+
+
+
+def userscreen():
+    nazwalist = tk.Listbox(root,bg="#00fffb",width=18,height=15)
+    nazwalist.place(x=5,y=120)
+    loginlist = tk.Listbox(root,bg="#00fffb",width=30,height=15)
+    loginlist.place(x=120,y=120)
+    haslalist = tk.Listbox(root,bg="#00fffb",width=30,height=15)
+    haslalist.place(x=310,y=120)
+
+    nazwalbl = tk.Label(root,text='Name',bg="#00fffb",font=('Arial',15))
+    nazwalbl.place(x=8,y=100)
+    loginlbl1 = tk.Label(root,text='Email',bg="#00fffb",font=('Arial',15))
+    loginlbl1.place(x=123,y=100)
+    haslalbl = tk.Label(root,text='Password',bg="#00fffb",font=('Arial',15))
+    haslalbl.place(x=313,y=100)
+
+    addbtn = tk.Button(root,text='Add...',font=('Arial',15),bg="gray",command=addwindow)
+    addbtn.place(x=5,y=370)
+
+
 def note():
     wronglbl.configure(text='',bg="#00fffb")
 
@@ -127,6 +171,7 @@ def cleanlog():
     passlbl.destroy()
     forgotbtn.destroy()
     saverad.destroy()
+    userscreen()
 
 root = Tk()
 root.title('EasyPass')

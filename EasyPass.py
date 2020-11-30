@@ -28,6 +28,10 @@ save = False
 key = ''
 keyuse = ''
 log = False
+nameadd = ''
+emailadd = ''
+hasloadd = ''
+num = 0
 
 try:
     f = open("save.save")
@@ -40,36 +44,7 @@ except IOError:
     f.close()
     f = open("save.save")
     key = f.read()
-    f.close()
-
-def addwindow():
-    addwd = tk.Toplevel(root)
-    addwd.title('Add')
-    addwd.geometry('250x150')
-    addwd.resizable(False,False)
-    addwd.iconphoto(False, tk.PhotoImage(file='logo.png'))
-    addw_bg = tk.Label(addwd,bg="#00fffb",width=50,height=80)
-    addw_bg.place(x=0,y=0)
-
-    nameaddlbl = tk.Label(addwd,text='Name:',bg="#00fffb",font=('Arial',12))
-    nameaddlbl.place(x=5,y=5)
-    loginaddlbl = tk.Label(addwd,text='Email:',bg="#00fffb",font=('Arial',12))
-    loginaddlbl.place(x=5,y=33)
-    hasloaddlbl = tk.Label(addwd,text='Password:',bg="#00fffb",font=('Arial',12))
-    hasloaddlbl.place(x=5,y=60)
-
-    nameaddent = tk.Entry(addwd,bg='gray',font=('Arial',10))
-    nameaddent.place(x=55,y=7)
-    loginaddent = tk.Entry(addwd,bg='gray',font=('Arial',10))
-    loginaddent.place(x=55,y=35)
-    hasloaddent = tk.Entry(addwd,bg='gray',font=('Arial',10),show='*')
-    hasloaddent.place(x=85,y=63)
-
-    addbtn = tk.Button(addwd,text='Add to list',bg="gray",font=('Arial',12))
-    addbtn.place(x=5,y=100)
-
-
-
+    f.close()    
 
 def userscreen():
     nazwalist = tk.Listbox(root,bg="#00fffb",width=18,height=15)
@@ -85,6 +60,51 @@ def userscreen():
     loginlbl1.place(x=123,y=100)
     haslalbl = tk.Label(root,text='Password',bg="#00fffb",font=('Arial',15))
     haslalbl.place(x=313,y=100)
+
+
+    def addwindow():
+        addwd = tk.Toplevel(root)
+        addwd.title('Add')
+        addwd.geometry('250x150')
+        addwd.resizable(False,False)
+        addwd.iconphoto(False, tk.PhotoImage(file='logo.png'))
+        addw_bg = tk.Label(addwd,bg="#00fffb",width=50,height=80)
+        addw_bg.place(x=0,y=0)
+        
+
+        nameaddlbl = tk.Label(addwd,text='Name:',bg="#00fffb",font=('Arial',12))
+        nameaddlbl.place(x=5,y=5)
+        loginaddlbl = tk.Label(addwd,text='Email:',bg="#00fffb",font=('Arial',12))
+        loginaddlbl.place(x=5,y=33)
+        hasloaddlbl = tk.Label(addwd,text='Password:',bg="#00fffb",font=('Arial',12))
+        hasloaddlbl.place(x=5,y=60)
+
+        nameaddent = tk.Entry(addwd,bg='gray',font=('Arial',10))
+        nameaddent.place(x=55,y=7)
+        loginaddent = tk.Entry(addwd,bg='gray',font=('Arial',10))
+        loginaddent.place(x=55,y=35)
+        hasloaddent = tk.Entry(addwd,bg='gray',font=('Arial',10),show='*')
+        hasloaddent.place(x=85,y=63)
+
+        def addlist():
+            global nameadd, emailadd, hasloadd
+            nameadd = nameaddent.get()
+            emailadd = loginaddent.get()
+            hasloadd = hasloaddent.get()
+
+            num = nazwalist.size()
+            num =+ 1
+            nazwalist.insert(num, nameadd)
+            num = loginlist.size()
+            num =+ 1
+            loginlist.insert(num, emailadd)
+            num = haslalist.size()
+            num =+ 1
+            haslalist.insert(num, hasloadd)
+
+
+        addbtn = tk.Button(addwd,text='Add to list',bg="gray",font=('Arial',12),command=addlist)
+        addbtn.place(x=5,y=100)
 
     addbtn = tk.Button(root,text='Add...',font=('Arial',15),bg="gray",command=addwindow)
     addbtn.place(x=5,y=370)
